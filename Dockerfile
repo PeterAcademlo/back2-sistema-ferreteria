@@ -1,8 +1,6 @@
 FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
-
-# Copiar archivos del proyecto
 COPY . .
 
 # Crear directorio para la base de datos SQLite
