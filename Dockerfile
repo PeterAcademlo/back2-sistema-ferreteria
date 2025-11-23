@@ -1,13 +1,11 @@
-FROM maven:3.9-eclipse-temurin-17 as builder
+FROM eclipse-temurin:17-jdk
+
 WORKDIR /app
 COPY . .
-RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:17-jre
-WORKDIR /app
-COPY --from=builder /app/target/back2-ferreteria-1.0.0.jar app.jar
-RUN mkdir -p data
+# Compilar
+RUN find src -name "*.java" > sources.txt
+RUN javac -cp "lib/*" -d target @sources.txt
 
 EXPOSE 8081
-
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-cp", "target:lib/*", "gferre.Main"]

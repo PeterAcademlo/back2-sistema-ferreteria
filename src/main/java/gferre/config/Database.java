@@ -10,13 +10,23 @@ public class Database {
     private static final String URL = "jdbc:sqlite:data/ferreteria.db";
 
     public static void initialize() {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            System.out.println("✅ SQLite JDBC Driver cargado correctamente");
+            
+        } catch (ClassNotFoundException e) {
+            System.err.println("❌ Error: SQLite JDBC Driver no encontrado");
+            e.printStackTrace();
+            return; // Salir si no hay driver
+        }
+
         try (Connection conn = DriverManager.getConnection(URL)) {
             if (conn != null) {
                 System.out.println("✅ Base de datos conectada correctamente");
 
                 Statement stmt = conn.createStatement();
 
-                // 🗑️ ELIMINAR TABLAS INNECESARIAS PRIMERO
+                // ELIMINAR TABLAS INNECESARIAS PRIMERO
                 try {
                     stmt.executeUpdate("DROP TABLE IF EXISTS movimientos");
                     System.out.println("✅ Tabla 'movimientos' eliminada");
@@ -38,7 +48,7 @@ public class Database {
                     System.out.println("ℹ️ Tabla 'almacenes' no existía: " + e.getMessage());
                 }
 
-                // ✅ CREAR SOLO LA TABLA DE PRODUCTOS
+                //  CREAR SOLO LA TABLA DE PRODUCTOS
                 stmt.executeUpdate(
                     "CREATE TABLE IF NOT EXISTS productos (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -52,7 +62,7 @@ public class Database {
 
                 System.out.println("✅ Tabla 'productos' creada o ya existente");
 
-                // 📊 Crear índices para mejor performance
+                // Crear índices para mejor performance
                 stmt.executeUpdate("CREATE INDEX IF NOT EXISTS idx_productos_codigo ON productos(codigo)");
                 stmt.executeUpdate("CREATE INDEX IF NOT EXISTS idx_productos_nombre ON productos(nombre)");
                 
@@ -61,6 +71,7 @@ public class Database {
 
         } catch (SQLException e) {
             System.err.println("❌ Error inicializando base de datos: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
