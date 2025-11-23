@@ -58,6 +58,8 @@
                 </configuration>
             </plugin>
             
+            <!-- ELIMINA el maven-jar-plugin o déjalo, pero el shade-plugin lo reemplaza -->
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -69,6 +71,29 @@
                         </manifest>
                     </archive>
                 </configuration>
+            </plugin>
+            -->
+            
+            <!-- AGREGA ESTE PLUGIN (igual que en tu proyecto Kanban) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>gferre.Main</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

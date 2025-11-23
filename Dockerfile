@@ -5,7 +5,8 @@ RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:17-jre
 WORKDIR /app
-COPY --from=builder /app/target/back2-ferreteria-1.0.0.jar app.jar
+# El shade-plugin crea un JAR con "-shaded" en el nombre
+COPY --from=builder /app/target/back2-ferreteria-1.0.0-shaded.jar app.jar
 RUN mkdir -p data
 
 EXPOSE 8081
