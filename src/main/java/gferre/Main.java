@@ -7,8 +7,8 @@ import static spark.Spark.*;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("🚀 Iniciando BACK2 (Sistema de Ventas Simplificado)...");
-        System.out.println("🔧 Iniciando base de datos...");
+        System.out.println(" Iniciando BACK2 (Sistema de Ventas Simplificado)...");
+        System.out.println(" Iniciando base de datos...");
         Database.initialize();
 
         // Configurar puerto
@@ -37,7 +37,7 @@ public class Main {
         // ✅ SOLO ProductoController - Eliminados los otros
         new ProductoController();
 
-        System.out.println("✅ Servidor iniciado en http://localhost:8081");
+        System.out.println(" Servidor iniciado en http://localhost:8081");
         System.out.println("► Rutas disponibles:");
         System.out.println("   GET    /api/productos                 # Listar stock");
         System.out.println("   GET    /api/productos/:id             # Obtener producto");
@@ -47,6 +47,6 @@ public class Main {
         System.out.println("   GET    /api/productos/buscar/:query   # Buscar para ventas");
         System.out.println("   PUT    /api/productos/:id/stock       # Actualizar stock");
         System.out.println("----------------------------------------");
-        System.out.println("🔐 Todas las rutas requieren token de autenticación");
+        System.out.println(" Todas las rutas requieren token de autenticación");
     }
 }

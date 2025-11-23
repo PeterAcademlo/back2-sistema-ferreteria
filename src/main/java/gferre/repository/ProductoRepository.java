@@ -26,13 +26,13 @@ public class ProductoRepository {
                 try (ResultSet rs = pstmt.getGeneratedKeys()) {
                     if (rs.next()) {
                         producto.setId(rs.getInt(1));
-                        System.out.println("✅ Producto guardado en BD con ID: " + producto.getId());
+                        System.out.println(" Producto guardado en BD con ID: " + producto.getId());
                     }
                 }
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error guardando producto: " + e.getMessage());
+            System.err.println(" Error guardando producto: " + e.getMessage());
         }
         return producto;
     }
@@ -58,7 +58,7 @@ public class ProductoRepository {
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error obteniendo productos: " + e.getMessage());
+            System.err.println(" Error obteniendo productos: " + e.getMessage());
         }
         return productos;
     }
@@ -85,7 +85,7 @@ public class ProductoRepository {
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error buscando producto: " + e.getMessage());
+            System.err.println(" Error buscando producto: " + e.getMessage());
         }
         return Optional.empty();
     }
@@ -112,7 +112,7 @@ public class ProductoRepository {
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error buscando producto por código: " + e.getMessage());
+            System.err.println(" Error buscando producto por código: " + e.getMessage());
         }
         return Optional.empty();
     }
@@ -134,7 +134,7 @@ public class ProductoRepository {
             return affectedRows > 0;
             
         } catch (SQLException e) {
-            System.err.println("❌ Error actualizando producto: " + e.getMessage());
+            System.err.println(" Error actualizando producto: " + e.getMessage());
         }
         return false;
     }
@@ -150,7 +150,7 @@ public class ProductoRepository {
             return affectedRows > 0;
             
         } catch (SQLException e) {
-            System.err.println("❌ Error eliminando producto: " + e.getMessage());
+            System.err.println(" Error eliminando producto: " + e.getMessage());
         }
         return false;
     }
@@ -185,10 +185,10 @@ public class ProductoRepository {
             productos.add(producto);
         }
         
-        System.out.println("🔍 Búsqueda '" + query + "' - Encontrados: " + productos.size());
+        System.out.println(" Búsqueda '" + query + "' - Encontrados: " + productos.size());
         
     } catch (SQLException e) {
-        System.err.println("❌ Error buscando productos: " + e.getMessage());
+        System.err.println(" Error buscando productos: " + e.getMessage());
     }
     return productos;
 }

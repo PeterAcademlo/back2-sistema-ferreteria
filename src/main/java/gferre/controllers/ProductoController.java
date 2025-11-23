@@ -13,7 +13,7 @@ public class ProductoController {
 
         path("/productos", () -> {
 
-            // 📋 OBTENER TODOS LOS PRODUCTOS
+            //  OBTENER TODOS LOS PRODUCTOS
             get("", (req, res) -> {
                 res.type("application/json");
                 try {
@@ -79,7 +79,7 @@ public class ProductoController {
                 }
             });
 
-            // ➕ CREAR NUEVO PRODUCTO
+            //  CREAR NUEVO PRODUCTO
             post("", (req, res) -> {
                 res.type("application/json");
                 try {
@@ -109,7 +109,7 @@ public class ProductoController {
                 }
             });
 
-            // ✏️ ACTUALIZAR PRODUCTO
+            //  ACTUALIZAR PRODUCTO
             put("/:id", (req, res) -> {
                 res.type("application/json");
                 try {
@@ -133,7 +133,7 @@ public class ProductoController {
                 }
             });
 
-            // 🗑️ ELIMINAR PRODUCTO
+            //  ELIMINAR PRODUCTO
             delete("/:id", (req, res) -> {
                 res.type("application/json");
                 try {
@@ -159,7 +159,7 @@ public class ProductoController {
         System.out.println("➡️ ProductoController cargado (JSON MANUAL)");
     }
 
-    // 📝 MÉTODO PARA PARSEAR JSON MANUALMENTE
+    // MÉTODO PARA PARSEAR JSON MANUALMENTE
     private Producto parseProductoFromJson(String json) {
         try {
             // Remover llaves y espacios
@@ -178,7 +178,7 @@ public class ProductoController {
         }
     }
 
-    // 🔍 MÉTODO PARA EXTRAER VALORES DEL JSON
+    // MÉTODO PARA EXTRAER VALORES DEL JSON
     private String extractValue(String json, String key) {
         String search = key + ":";
         int start = json.indexOf(search);
@@ -191,7 +191,7 @@ public class ProductoController {
         return json.substring(start, end);
     }
 
-    // 🛡️ MÉTODO PARA ESCAPAR CARACTERES ESPECIALES EN JSON
+    // MÉTODO PARA ESCAPAR CARACTERES ESPECIALES EN JSON
     private String escapeJson(String text) {
         if (text == null) return "";
         return text.replace("\\", "\\\\")
