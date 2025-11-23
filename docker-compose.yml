@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  back2:
+    build: .
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./data:/app/data  # Persistir la base de datos
+    environment:
+      - JAVA_OPTS=-Xmx512m

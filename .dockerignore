@@ -1,0 +1,7 @@
+.git
+.gitignore
+README.md
+*.iml
+.idea/
+target/
+data/ferreteria.db  # Para que no sobrescriba la BD al construir
